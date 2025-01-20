@@ -20,7 +20,7 @@ class WebDriver:
     Class that represents a web driver to do web scrapping.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, headless: bool = False) -> None:
         """
         Constructor of the WebDriver class
         """
@@ -31,19 +31,25 @@ class WebDriver:
             self.__options = Options()
             
             # Initial browser configuration
-            for option in ['--start-maximized',
-                           '--disable-web-security',
-                           '--disable-extension',
-                           '--disable-notifications',
-                           '--ignore-certificate-errors',
-                           '--no-sandbox',
-                           '--log-level=3',
-                           '--allow-running-insecure-content',
-                           '--no-default-browser-check',
-                           '--no-first-run',
-                           '--no-proxy-server',
-                           '--disable-blink-features=AutomationControlled',
-                           f'user-agent={self.__user_agent}']:
+            options = [
+                '--start-maximized',
+                '--disable-web-security',
+                '--disable-extension',
+                '--disable-notifications',
+                '--ignore-certificate-errors',
+                '--no-sandbox',
+                '--log-level=3',
+                '--allow-running-insecure-content',
+                '--no-default-browser-check',
+                '--no-first-run',
+                '--no-proxy-server',
+                '--disable-blink-features=AutomationControlled',
+                f'user-agent={self.__user_agent}']
+            
+            if headless:
+                options.append('--headless')
+            
+            for option in options:
                 self.__options.add_argument(option)
 
             # Parameters to exclude to start the browser.
@@ -114,6 +120,7 @@ class WebDriver:
         Finish the driver and remove all .crdownload files from the downloads directory.
         """
         self.driver.quit()
-        for file in os.listdir(DOWNLOADS_PATH):
-            if file.endswith('.crdownload'):
-                os.remove(os.path.join(DOWNLOADS_PATH, file))
+        if os.path.exists(DOWNLOADS_PATH):
+            for file in os.listdir(DOWNLOADS_PATH):
+                if file.endswith('.crdownload'):
+                    os.remove(os.path.join(DOWNLOADS_PATH, file))
