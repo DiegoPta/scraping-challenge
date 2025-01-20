@@ -26,8 +26,8 @@ class WebDriver:
         """
         try:
             self.__webdriver_path = ChromeDriverManager().install()
-            self.__user_agent = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                        'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36')
+            self.__user_agent = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                                 '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36')
             self.__options = Options()
             
             # Initial browser configuration
@@ -63,7 +63,7 @@ class WebDriver:
                      'intl.accept_languages': ['es-ES', 'es'],
                      'credentials_enable_service': False,
                      'download.prompt_for_download': False,
-                     'download.directory_upgrade': True,}
+                     'download.directory_upgrade': True}
             self.__options.add_experimental_option('prefs', prefs)
 
             # Initialization of the web driver.
@@ -88,7 +88,8 @@ class WebDriver:
         service = Service(self.__webdriver_path)
         return webdriver.Chrome(service=service, options=self.__options)
 
-    def get_element(self, selector_value: str, selector_type: str = 'ID') -> webdriver.remote.webelement.WebElement:
+    def get_element(self, selector_value: str, selector_type: str = 'ID'
+                    ) -> webdriver.remote.webelement.WebElement:
         """
         Finds and returns an html element of a website.
         @param selector_value:  Selector value to identify the element.
@@ -101,7 +102,8 @@ class WebDriver:
                 'CSS': By.CSS_SELECTOR
             }[selector_type]
         except Exception as err:
-            raise Exception(f'Web element identification failed: {selector_value=}, {selector_type=}, {str(err)=}')
+            raise Exception('Web element identification failed: '
+                            f'{selector_value=}, {selector_type=}, {str(err)=}')
 
         return self.driver.find_element(selector, selector_value)
     

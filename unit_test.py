@@ -41,11 +41,11 @@ def test_download_file(webdriver_fixture):
 def test_extract_contacts():
     contact_extractor = ContactExtractor(DOWNLOADED_DATA_PATH)
     contacts = contact_extractor.get_contacts()
-    assert isinstance(contacts, list) == True
-    assert isinstance(contacts[0], Contact) == True
+    assert isinstance(contacts, list)
+    assert isinstance(contacts[0], Contact)
 
 
-def test_do_challenge(webdriver_fixture): 
+def test_do_challenge(webdriver_fixture):
     webdriver_fixture.get_element(GLOBAL_SELECTORS['start_challenge_button'], 'CSS').click()
 
     contact_extractor = ContactExtractor(DOWNLOADED_DATA_PATH)

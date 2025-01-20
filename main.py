@@ -46,7 +46,7 @@ def execute() -> None:
                 webdriver.press_enter(GLOBAL_SELECTORS['submit_button'])
                 print(f'\tSubmitted: {contact.email=}')
             
-            print(f'\n\tContact data successfully submitted!')
+            print('\n\tContact data successfully submitted!')
             
             # Print results.
             print(f'\n\t{webdriver.get_element(GLOBAL_SELECTORS['congratulations'], 'CSS').text}')

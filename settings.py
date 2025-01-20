@@ -12,7 +12,7 @@ DOWNLOADS_PATH = 'data'
 DOWNLOADED_DATA_PATH = f'{DOWNLOADS_PATH}/Arena RPA FormData.xlsx'
 
 # Global selectors.
-# They do not correspond to the information to be added in the contact form 
+# They do not correspond to the information to be added in the contact form
 # because they are in the Contact class.
 GLOBAL_SELECTORS = {
     'download_file_button': 'a.bg-gray-100',
