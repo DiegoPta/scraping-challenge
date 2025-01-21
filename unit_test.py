@@ -57,4 +57,4 @@ def test_do_challenge(webdriver_fixture):
         webdriver_fixture.press_enter(GLOBAL_SELECTORS['submit_button'])
     
     assert webdriver_fixture.get_element(
-        GLOBAL_SELECTORS['congratulations'], 'CSS').text == 'Felicitaciones!'
+        GLOBAL_SELECTORS['congratulations'], 'CSS').text in ('Felicitaciones!', 'Congratulations!')
